@@ -4,6 +4,7 @@ import com.kodilla.testing.calculator.Calculator;
 
 public class TestingMain {
     public static void main(String[] args) {
+        /*
         SimpleUser simpleUser = new SimpleUser("theForumUser");
         String result = simpleUser.getUsername();
         if (result == "theForumUser") {
@@ -28,7 +29,7 @@ public class TestingMain {
         } else {
             System.out.println("ERROR - for unit test method subtract!!!");
         }
-
+        */
 
     }
 }
