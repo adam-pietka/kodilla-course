@@ -50,8 +50,5 @@ public class CollectionTestSuite {
         OddNumbersExterminator listTest01 = new OddNumbersExterminator();
         listTest01.exterminate(test01);
         System.out.println(listTest01.exterminate(test01));
-
     }
-
-
 }
