@@ -6,24 +6,23 @@ import org.junit.jupiter.api.*;
 import java.util.*;
 
 public class CollectionTestSuite {
-
-
-    @BeforeEach
+     @BeforeEach
     public void beforeEach(){
-        System.out.println("Test Case for \'Collection\': begin. " +
-                "Result is available below.");
+        System.out.println("Test Case for \'Collection\': begin.");
     }
     @AfterEach
     public void afterEach(){
-        System.out.println("Test Case for \'Collections\': end.\n");
+         System.out.println("Test Case for \'Collections\': end.\n");
     }
+
     @BeforeAll
     public static void beforeAll(){
-        System.out.println("Test Suite: BEGINE!!!\n");
+         System.out.println("******************* Test Suite: BEGINE!!! **********************\n");
     }
+
     @AfterAll
     public  static void afterAll(){
-        System.out.println("Test Suite: END pls check result.");
+        System.out.println("************* Test Suite: END pls check result. *************");
     }
 
     @DisplayName("Test for empty list")
@@ -31,8 +30,10 @@ public class CollectionTestSuite {
     void testOddNumbersExterminatorEmptyList(){
         List<Integer> emptyList = new ArrayList<>();
         OddNumbersExterminator testEmptyList = new OddNumbersExterminator();
-        testEmptyList.exterminate(emptyList);
-        System.out.println(testEmptyList.exterminate(emptyList));
+
+        List<Integer> compareEmptyList = new ArrayList<>(); // [utworzenie póstej listy do porównania]
+
+        Assertions.assertEquals( compareEmptyList, testEmptyList.exterminate(emptyList));
     }
 
     @DisplayName("Test for normal list, with numbers")
@@ -48,7 +49,17 @@ public class CollectionTestSuite {
         test01.add(-54);
 
         OddNumbersExterminator listTest01 = new OddNumbersExterminator();
-        listTest01.exterminate(test01);
-        System.out.println(listTest01.exterminate(test01));
+
+        List<Integer> selectedNumbers = new ArrayList<>(); // [utworzenie listy z liczbami parzystymi]
+        selectedNumbers.add(0);
+        //selectedNumbers.add(1);
+        selectedNumbers.add(2);
+        //selectedNumbers.add(3);
+        selectedNumbers.add(4);
+        //selectedNumbers.add(5);
+        selectedNumbers.add(-54);
+
+        //listTest01.exterminate(test01);
+        Assertions.assertEquals(selectedNumbers, listTest01.exterminate(test01));
     }
 }
