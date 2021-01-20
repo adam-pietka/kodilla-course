@@ -12,11 +12,12 @@ public class TestingMain {
         } else {
             System.out.println("Error!!!");
         }
+        */
         // [unit tests for class Calculator]
         System.out.println();
-        Calculator calculator = new Calculator(2,3);
-        int addResult =  calculator.addValues();
-        int subResult = calculator.subtractValue();
+        Calculator calculator = new Calculator();
+        int addResult =  calculator.addValues(2,3);
+        int subResult = calculator.subtractValue(7,8);
 
         if (addResult == 5){
             System.out.println("Unit test for add method is -  OK");
@@ -29,7 +30,7 @@ public class TestingMain {
         } else {
             System.out.println("ERROR - for unit test method subtract!!!");
         }
-        */
+
 
     }
 }
