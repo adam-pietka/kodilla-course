@@ -12,7 +12,7 @@ public class TestingMain {
         } else {
             System.out.println("Error!!!");
         }
-        */
+
         // [unit tests for class Calculator]
         System.out.println();
         Calculator calculator = new Calculator();
@@ -31,6 +31,7 @@ public class TestingMain {
             System.out.println("ERROR - for unit test method subtract!!!");
         }
 
+         */
 
     }
 }
