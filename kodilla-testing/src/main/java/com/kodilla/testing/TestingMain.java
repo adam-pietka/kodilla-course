@@ -4,6 +4,7 @@ import com.kodilla.testing.calculator.Calculator;
 
 public class TestingMain {
     public static void main(String[] args) {
+        System.out.println("Starting module 6"); // []
         /*
         SimpleUser simpleUser = new SimpleUser("theForumUser");
         String result = simpleUser.getUsername();

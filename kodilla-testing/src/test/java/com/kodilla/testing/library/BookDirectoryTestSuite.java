@@ -47,10 +47,10 @@ public class BookDirectoryTestSuite {
         List<Book> resultListOf0Books = new ArrayList<Book>();
         List<Book> resultListOf15Books = generateListOfNBooks(15);
         List<Book> resultListOf40Books = generateListOfNBooks(40);
-        when(libraryDatabaseMock.listBooksWithCondition("ZeroBooks"))
-                .thenReturn(resultListOf0Books);
         when(libraryDatabaseMock.listBooksWithCondition(anyString()))
                 .thenReturn(resultListOf15Books);
+        when(libraryDatabaseMock.listBooksWithCondition("ZeroBooks"))
+                .thenReturn(resultListOf0Books);
         when(libraryDatabaseMock.listBooksWithCondition("FortyBooks"))
                 .thenReturn(resultListOf40Books);
 
@@ -61,7 +61,7 @@ public class BookDirectoryTestSuite {
         //Then
         assertEquals(0, theListOfBooks0.size());
         assertEquals(15, theListOfBooks15.size());
-        assertEquals(0, theListOfBooks40.size());
+        assertEquals(0, theListOfBooks40.size());           // [dlaczego tutaj musi być zero żeby zadziałało???? ]
     }
 
     @Test
@@ -99,9 +99,9 @@ public class BookDirectoryTestSuite {
         List<Book> listOfCheckedBooks5 = bookLibrary.listBooksInHandsOf(libraryUser5);
 
         //then
-        assertEquals(10, listOfCheckedBooks0.size());
-        assertEquals(0, listOfCheckedBooks1.size());
-        assertEquals(0, listOfCheckedBooks5.size());
+        assertEquals(0, listOfCheckedBooks0.size());
+        assertEquals(1, listOfCheckedBooks1.size());
+        assertEquals(5, listOfCheckedBooks5.size());
 
     }
 

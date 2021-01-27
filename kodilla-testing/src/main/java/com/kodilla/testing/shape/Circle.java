@@ -11,7 +11,7 @@ public class Circle implements Shape {
     @Override
     public double getField() {
         // do impmementacji
-        return 2.2;
+        return 2;
     }
 
     @Override
