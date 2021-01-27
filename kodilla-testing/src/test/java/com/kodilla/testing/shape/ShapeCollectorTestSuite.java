@@ -80,4 +80,14 @@ public class ShapeCollectorTestSuite {
         Assertions.assertEquals("Square", result);
     }
 
+    @DisplayName("Test of method getField")
+    @Test
+    void testCaseGetField(){
+        //Given
+        ShapeCollector shapeCollector = new ShapeCollector();
+        //When
+        double returnedValue = shapeCollector.fieldForShape(new Rectangle(2,3));
+        //Then
+        Assertions.assertEquals(4, returnedValue);
+    }
 }

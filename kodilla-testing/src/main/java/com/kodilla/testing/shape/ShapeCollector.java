@@ -30,6 +30,11 @@ public class ShapeCollector {
         //body
         return 100;
     }
+
+    public double fieldForShape (Shape shape){
+        return shape.getField();
+    }
+
 }
 
 
