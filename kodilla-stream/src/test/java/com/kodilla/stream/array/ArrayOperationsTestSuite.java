@@ -20,10 +20,3 @@ public class ArrayOperationsTestSuite {
     }
 
 }
-
-/*
-* W katalogu src/test/java utwórz pakiet com.kodilla.stream.array
-* z jednym zestawem testów ArrayOperationsTestSuite
-* oraz jednym testem testGetAverage().
-*
-* */
