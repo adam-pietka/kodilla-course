@@ -1,7 +1,9 @@
 package com.kodilla.stream.portfolio;
 
 import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,16 +145,29 @@ public class BoardTestSuite {
     }
 
     @Test
-    void testAddTaskListAverageWorkingOnTask(){
+    void testAddTaskListAverageWorkingOnTask() {
         //Given
-        //Board project = new Board();
+        Board project = prepareTestData();
 
         //When
-
-
         //Then
-        assertEquals(5,6);
+
+        long countListOfTaskInProgress = project.getTaskLists().stream()        //[get task list, and stream them]
+                .filter(taskList -> taskList.getName().equals("In progress"))   //[filter ]
+                .flatMap(tl -> tl.getTasks().stream())                          //[we need to flat them, because we need only to count them]
+                .count();                                                       // [count]
+
+        long sumListOfTaskInProgress = project.getTaskLists().stream()          //[get task list, and stream them]
+                .filter(taskList -> taskList.getName().equals("In progress"))   //[filter]
+                .flatMap(taskList -> taskList.getTasks().stream())              //[frat to prepare to take data]
+                .mapToLong(task -> ChronoUnit.DAYS.between(task.getCreated(), LocalDate.now())) //[mapToLong help do take data in "long" format, "ChronoUnit" calculate difference between dates]
+                .sum();                                                                         //[just sum]
+        double resultAverage = sumListOfTaskInProgress / countListOfTaskInProgress;
+
+
+        assertEquals(3.0, countListOfTaskInProgress);
+        assertEquals(30, sumListOfTaskInProgress);
+        assertEquals(10, resultAverage);
 
     }
-
 }
