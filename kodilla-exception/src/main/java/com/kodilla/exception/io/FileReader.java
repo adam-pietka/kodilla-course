@@ -1,4 +1,4 @@
-package com.kodilla.exception;
+package com.kodilla.exception.io;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.io.File;
