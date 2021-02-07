@@ -33,4 +33,5 @@ public class FirstChallenge {
         System.out.println("Resutl is: " + result);
 
     }
+
 }
