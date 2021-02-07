@@ -28,10 +28,9 @@ public class FirstChallenge {
     public static void main(String[] args) {
 
         FirstChallenge firstChallenge = new FirstChallenge();
-
         double result = firstChallenge.divide(3,0 );
 
-        System.out.println(result);
+        System.out.println("Resutl is: " + result);
 
     }
 }
