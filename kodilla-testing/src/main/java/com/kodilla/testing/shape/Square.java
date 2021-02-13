@@ -9,13 +9,11 @@ public class Square implements Shape {
 
     @Override
     public String getShapeName() {
-        //System.out.println("Square");
-        return null;
+        return "Square";
     }
 
     @Override
     public double getField() {
-        // body ???
-        return 4.0;
+        return Math.pow(sideLength, 2);
     }
 }

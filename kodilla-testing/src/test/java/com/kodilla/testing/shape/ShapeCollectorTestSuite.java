@@ -46,19 +46,19 @@ public class ShapeCollectorTestSuite {
         ShapeCollector shapeCollector = new ShapeCollector();
         Square square = new Square(5);
         shapeCollector.addFigure(square);
-        //When
-        boolean result = shapeCollector.removeFigure(square);
-        //Then
-        Assertions.assertTrue(result);
+
+        //When & Then
+        Assertions.assertEquals(1, shapeCollector.getShapeQuantity());
+        Assertions.assertTrue(shapeCollector.removeFigure(square));
         Assertions.assertEquals(0, shapeCollector.getShapeQuantity());
     }
 
-    @DisplayName("Test of GET_FIGURE method")
+    @DisplayName("Test for method - GET_FIGURE ")
     @Test
     void testCaseGetFigure(){
         //Give
         ShapeCollector shapeCollector = new ShapeCollector();
-        Shape circle = new Circle(3);
+        Shape circle = new Circle(3.0);
         shapeCollector.addFigure(circle);
         //When
         Shape result = shapeCollector.getFigure(0);
@@ -71,13 +71,17 @@ public class ShapeCollectorTestSuite {
     void testCaseShowFigures(){
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
-        Square square = new Square(4);
-        shapeCollector.addFigure(square);
+        shapeCollector.addFigure(new Rectangle(2.0,3.0));     //0
+        shapeCollector.addFigure(new Square(3.0));                       //1
+        shapeCollector.addFigure(new Circle(10.0));                     //2
+        shapeCollector.addFigure(new Triangle(3.0, 2.0));         //3
 
         //When
         String result = shapeCollector.showFigure();
+        String   shapesList = shapeCollector.showFigure();
+
         //Then
-        Assertions.assertEquals("Square", result);
+        Assertions.assertEquals("Rectangle, Square, Circle, Triangle", shapesList);
     }
 
     @DisplayName("Test of method getField")
@@ -85,9 +89,23 @@ public class ShapeCollectorTestSuite {
     void testCaseGetField(){
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
+
+        shapeCollector.addFigure(new Rectangle(2.0,3.0));     //0
+        shapeCollector.addFigure(new Square(3.0));                       //1
+        shapeCollector.addFigure(new Circle(10.0));                     //2
+        shapeCollector.addFigure(new Triangle(3.0, 2.0));         //3
+
         //When
-        double returnedValue = shapeCollector.fieldForShape(new Rectangle(2,3));
+        double returnedRectangle =  shapeCollector.getFigure(0).getField();
+        double returnedSquare   = shapeCollector.getFigure(1).getField();
+        double returnedCircle = shapeCollector.getFigure(2).getField();
+        double returnedTriangle = shapeCollector.getFigure(3).getField();
+
         //Then
-        Assertions.assertEquals(4, returnedValue);
+        Assertions.assertEquals(6, returnedRectangle);
+        Assertions.assertEquals(9,returnedSquare);
+        Assertions.assertEquals(314.159, returnedCircle);
+        Assertions.assertEquals(3,returnedTriangle);
+
     }
 }

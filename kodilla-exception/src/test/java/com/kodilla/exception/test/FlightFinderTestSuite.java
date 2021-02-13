@@ -15,8 +15,8 @@ public class FlightFinderTestSuite {
         Flight flightOutOfRange = new Flight("xxx", "Warsaw");
         Flight flightOutOfRange2 = new Flight("xxx", "Qsamo");
 
-//        assertDoesNotThrow( ()-> flightFinderrr.findFilght(flightInRAnge));
-//        assertThrows(RouteNotFoundException.class, () -> flightFinderrr.findFilght(flightOutOfRange) );
+        assertDoesNotThrow( ()-> flightFinderrr.findFilght(flightInRAnge));
+        assertThrows(RouteNotFoundException.class, () -> flightFinderrr.findFilght(flightOutOfRange) );
         assertThrows(RouteNotFoundException.class, () -> flightFinderrr.findFilght(flightOutOfRange2) );
     }
 }

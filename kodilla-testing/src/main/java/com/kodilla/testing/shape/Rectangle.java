@@ -3,21 +3,22 @@ package com.kodilla.testing.shape;
 //Public class Circle implements Shape {
   public class Rectangle  implements  Shape{
 
-      private int sideLengthA;
-      private int sideLengthB;
+      private double sideLengthA;
+      private double sideLengthB;
 
-    public Rectangle(int sideLengthA, int sideLengthB) {
+    public Rectangle(double sideLengthA, double sideLengthB) {
         this.sideLengthA = sideLengthA;
         this.sideLengthB = sideLengthB;
     }
 
     @Override
       public String getShapeName() {
-        return null;
+        return "Rectangle";
       }
 
       @Override
       public double getField() {
-        return 0;
+
+        return sideLengthA * sideLengthB ;
       }
 }

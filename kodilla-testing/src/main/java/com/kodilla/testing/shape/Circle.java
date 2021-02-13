@@ -1,5 +1,7 @@
 package com.kodilla.testing.shape;
 
+import java.text.DecimalFormat;
+
 public class Circle implements Shape {
 
     private double circleRadius ;
@@ -10,13 +12,16 @@ public class Circle implements Shape {
 
     @Override
     public double getField() {
-        // do impmementacji
-        return 2;
+        double aa = (Math.round((Math.PI * Math.pow(circleRadius, 2) * 1000)))  ;
+        return aa / 1000;
+
+//    return () / 100;
+
     }
 
     @Override
     public String getShapeName() {
         //System.out.println("Circle");
-        return "Square";
+        return "Circle";
     }
 }

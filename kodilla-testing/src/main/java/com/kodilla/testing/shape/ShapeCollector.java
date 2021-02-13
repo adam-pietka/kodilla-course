@@ -6,29 +6,36 @@ import java.util.List;
 public class ShapeCollector {
     private List<Shape> shapes = new ArrayList<>();
 
-
     public void addFigure(Shape shape){
-        //shapes.add(shape);
+        shapes.add(shape);
     }
 
     public boolean removeFigure(Shape shape) {
-        // body
-        return  false;
+        boolean removeFigureResult = false;
+        if (shapes.remove(shape)){
+            removeFigureResult = true;
+        }
+        return  removeFigureResult;
     }
 
     public Shape getFigure(int n){
-        return  null;
-        //return shapes.get(n);
+        return shapes.get(n);
     }
 
     public String showFigure(){
-        // shape name in one String
-        return "trójkąty i kwadraty...";
+        String allShapesNames = "";
+        for (int i = 0; i < shapes.size();i++){
+         if ( i == 0 ){
+             allShapesNames = shapes.get(i).getShapeName() ;
+         } else {
+         allShapesNames = allShapesNames + ", " + shapes.get(i).getShapeName();
+         }
+        }
+        return  allShapesNames;
     }
 
     public int getShapeQuantity(){
-        //body
-        return 100;
+        return shapes.size();
     }
 
     public double fieldForShape (Shape shape){
