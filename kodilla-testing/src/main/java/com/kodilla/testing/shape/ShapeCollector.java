@@ -43,15 +43,3 @@ public class ShapeCollector {
     }
 
 }
-
-
-/*
-Utwórz klasę ShapeCollector z metodami:
-addFigure(Shape shape),
-removeFigure(Shape shape),
-getFigure(int n) oraz
-showFigures().
-
-5. W katalogu src/test/java utwórz pakiet com.kodilla.testing.shape.
-6.
-* */
