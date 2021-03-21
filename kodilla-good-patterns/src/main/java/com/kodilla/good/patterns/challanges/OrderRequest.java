@@ -4,23 +4,23 @@ public class OrderRequest {
 
     private User user;
     private String productName1Banana ;
-    private int productQuantity1 ;
+    private int productQuantity;
 
-    public OrderRequest(User user, String productName1Banana, int productQuantity1) {
+    public OrderRequest(User user, String productName, int productQuantity) {
         this.user = user;
-        this.productName1Banana = productName1Banana;
-        this.productQuantity1 = productQuantity1;
+        this.productName1Banana = productName;
+        this.productQuantity = productQuantity;
     }
 
     public User getUser() {
         return user;
     }
 
-    public String getProductName1Banana() {
+    public String getProductName() {
         return productName1Banana;
     }
 
-    public int getProductQuantity1() {
-        return productQuantity1;
+    public int getProductQuantity() {
+        return productQuantity;
     }
 }
