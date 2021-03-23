@@ -12,21 +12,19 @@ public class OrderMainServices {
     }
 
     public OrderDto process(final OrderRequest orderRequest ){
-        boolean isSale = orderService.sale(
+        OrderService shopAli = new AliStore();
+        boolean isSale = shopAli.sale(
                 orderRequest.getUser(),
                 orderRequest.getProductName(),
-                orderRequest.getProductQuantity());
+                orderRequest.getProductQuantity()
+        );
 
         if (isSale){
-            notificationService.sendInformationToUser(orderRequest.getUser()) ;
-            notificationService.sendMail();
+            NotificationService notificationMail = new SendSmsEmailNotyfication();
+            notificationMail.sendInformationToUser(orderRequest.getUser());
             orderRepository.orderToStore(orderRequest.getUser(), orderRequest);
-
-            System.out.println("We have accepted your order.");
-            System.out.println("Price is: " + orderService.priceToPay());
             return new OrderDto(orderRequest.getUser(), true);
         } else {
-            System.out.println("Sorry order is cancelled!");
             return new OrderDto(orderRequest.getUser(), false);
         }
     }

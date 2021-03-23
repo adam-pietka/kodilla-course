@@ -8,7 +8,7 @@ public class Application {
         OrderRequest orderRequest = orderRequestRetrieve.retrieve();
 
         OrderMainServices orderMainServices = new OrderMainServices(
-                new SendNotyficationService(), new AliStore(), new DataStoreOrderRepository());
+                new SendSmsEmailNotyfication(), new AliStore(), new DataStoreOrderRepository());
         orderMainServices.process(orderRequest);
     }
 }

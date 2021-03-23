@@ -2,21 +2,28 @@ package com.kodilla.good.patterns.challanges;
 
 public class AliStore implements OrderService{
 
-    private User user;
-    private String productName;
-    private int productQuantity;
-
-
     @Override
     public boolean sale(User user, String productName, int productQuantity) {
-        this.user = user;
-        this.productName = productName;
-        this.productQuantity = productQuantity;
-        return true;
+
+        boolean productIsAvailable = true;
+
+        if (productIsAvailable) {
+            orderConfirmation(productName);
+            priceTOPay(productQuantity);
+            System.out.println("Thank and regards AliShop!!!\n");
+            return true;
+        } else {
+            System.out.println("We are sorry, we can't send to you your product: " + productName + ".\n");
+            return false;
+        }
     }
 
-    public double priceToPay(){
-        return productQuantity * 2.5;
+    private void orderConfirmation(String productName){
+        System.out.println("Thank you for buy " + productName + " in our shop.");
+    }
+
+    private void priceTOPay(int productQuantity){
+        System.out.println("Price is: " + productQuantity * 2.5 + " EUR" );
     }
 
 }
