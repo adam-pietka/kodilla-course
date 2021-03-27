@@ -6,14 +6,11 @@ import java.util.List;
 public class ProviderExtraFoodShop implements  OrderService{
     @Override
     public ArrayList<ResponseProductInBasket> process(List<ProductInBasket> tempListEF) {
-        ResponseProductInBasket responseProductInBasket ;
 
         for (ProductInBasket i: tempListEF) {
-            i.getProductName();
-            i.getProductQuantity();
-
+            System.out.println(i.getProductName() + " " + i.getProductQuantity());
         }
-
+        System.out.println("Odpowiedż z ExtreFoodShop!!!");
         return null;
     }
 

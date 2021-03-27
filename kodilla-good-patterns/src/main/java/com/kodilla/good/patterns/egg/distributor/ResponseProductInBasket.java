@@ -22,4 +22,16 @@ public class ResponseProductInBasket {
     public boolean isSale() {
         return isSale;
     }
+
+    public void setProductInBasket(ProductInBasket productInBasket) {
+        this.productInBasket = productInBasket;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setSale(boolean sale) {
+        isSale = sale;
+    }
 }

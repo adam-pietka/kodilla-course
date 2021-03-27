@@ -5,20 +5,22 @@ import java.util.List;
 
 public class OrderMainServicesFoodToDoor {
 
-    private final NotificationService notificationService;
-    private final FoodOrderRequest foodOrderRequest;
-    private final OrderRepository orderRepository;
+    private final NotificationServiceFood2Door notificationServiceFood2Door;
+    private final OrderService orderService;
+    private final OrderRepositoryFood2Door orderRepositoryFood2Door;
     private List<ProductInBasket> tempListEF = new ArrayList<>();
     private List<ProductInBasket> tempListHF = new ArrayList<>();
     private List<ProductInBasket> tempListGF = new ArrayList<>();
 
-    public OrderMainServicesFoodToDoor(NotificationService notificationService, FoodOrderRequest foodOrderRequest, OrderRepository orderRepository) {
-        this.notificationService = notificationService;
-        this.foodOrderRequest = foodOrderRequest;
-        this.orderRepository = orderRepository;
+    public OrderMainServicesFoodToDoor(NotificationServiceFood2Door notificationServiceFood2Door,
+                                       OrderService orderService,
+                                       OrderRepositoryFood2Door orderRepositoryFood2Door) {
+        this.notificationServiceFood2Door = notificationServiceFood2Door;
+        this.orderService = orderService;
+        this.orderRepositoryFood2Door = orderRepositoryFood2Door;
     }
 
-    public void process( final FoodOrderRequest foodOrderRequest){
+    public void process(final FoodOrderRequest foodOrderRequest){
 //        divideIntoSuppliers();
         OrderService orderServiceExtraFood = new ProviderExtraFoodShop();
         OrderService orderServiceHealthyFood = new ProviderHealthyShop();
@@ -55,7 +57,7 @@ public class OrderMainServicesFoodToDoor {
             responseProductInBaskets.add(answer);
         }
 
-        for (ResponseProductInBasket print: responseProductInBaskets         ) {
+        for (ResponseProductInBasket print: responseProductInBaskets  ) {
             System.out.println(print);
         }
     }

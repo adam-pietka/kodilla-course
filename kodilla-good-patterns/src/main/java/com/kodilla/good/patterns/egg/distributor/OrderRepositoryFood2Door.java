@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.egg.distributor;
 
-public interface OrderRepository {
+public interface OrderRepositoryFood2Door {
 
     void orderToStore(OrderingPerson orderingPerson, FoodOrderRequest foodOrderRequest) ;
 }

@@ -5,7 +5,14 @@ public class AppFood2Door {
         System.out.println("Let's START!!!");
 
         BasketCustomerRetrieve basketCustomerRetrieve = new BasketCustomerRetrieve();
-        basketCustomerRetrieve.retrieve();
+        FoodOrderRequest foodOrderRequest =basketCustomerRetrieve.retrieve();
 
+        OrderMainServicesFoodToDoor orderMainServicesFoodToDoor = new OrderMainServicesFoodToDoor(
+                new SmsEmailNotyfication(),
+                new ProviderExtraFoodShop(),
+                new DataStoreOrderRepositoryFood2Door() );
+
+        orderMainServicesFoodToDoor.process(foodOrderRequest);
     }
+
 }
