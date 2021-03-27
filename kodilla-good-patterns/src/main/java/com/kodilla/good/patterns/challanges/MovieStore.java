@@ -1,6 +1,9 @@
 package com.kodilla.good.patterns.challanges;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 class MovieStore {
@@ -26,7 +29,7 @@ class MovieStore {
 
 
         booksTitlesWithTranslations.entrySet().stream()
-            .flatMap(x-> x.getValue().stream())
+                .flatMap(x-> x.getValue().stream())
                 .collect(Collectors.toSet())
                 .forEach(x-> System.out.print(x + "! "));
 
