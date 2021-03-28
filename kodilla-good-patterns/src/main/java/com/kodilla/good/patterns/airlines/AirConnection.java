@@ -1,20 +1,14 @@
 package com.kodilla.good.patterns.airlines;
 
 public class AirConnection {
-    private String departureCity ;
-    private String arrivalCity ;
+    private String airport ;
 
-    public AirConnection(String departureCity, String arrivalCity) {
-        this.departureCity =  arrivalCity.toUpperCase();
-        this.arrivalCity = arrivalCity.toUpperCase();
+    public AirConnection(String airport) {
+        this.airport = airport.toUpperCase();
     }
 
-    public String getDepartureCity() {
-        return departureCity;
-    }
-
-    public String getArrivalCity() {
-        return arrivalCity;
+    public String getAirport() {
+        return airport;
     }
 
     @Override
@@ -24,12 +18,16 @@ public class AirConnection {
 
         AirConnection that = (AirConnection) o;
 
-        if (!departureCity.equals(that.departureCity)) return false;
-        return arrivalCity.equals(that.arrivalCity);
+        return airport.equals(that.airport);
     }
 
     @Override
     public int hashCode() {
-        return departureCity.hashCode();
+        return airport.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return   "Airport City: " + airport ;
     }
 }
