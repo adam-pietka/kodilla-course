@@ -7,10 +7,12 @@ public class AppFood2Door {
         BasketCustomerRetrieve basketCustomerRetrieve = new BasketCustomerRetrieve();
         FoodOrderRequest foodOrderRequest =basketCustomerRetrieve.retrieve();
 
+
         OrderMainServicesFoodToDoor orderMainServicesFoodToDoor = new OrderMainServicesFoodToDoor(
                 new SmsEmailNotyfication(),
-                new ProviderExtraFoodShop(),
-                new DataStoreOrderRepositoryFood2Door() );
+//                new ProviderExtraFoodShop(),
+                new OrderTestONE().getShop(0),
+                new DataStoreOrderRepositoryFood2Door());
 
         orderMainServicesFoodToDoor.process(foodOrderRequest);
     }
