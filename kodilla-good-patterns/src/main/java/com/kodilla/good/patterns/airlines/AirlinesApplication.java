@@ -6,7 +6,7 @@ public class AirlinesApplication {
     public static void main(String[] args) {
         FlyFinder flyFinder = new FlyFinder();
 
-        List<String> resultDeparture =  flyFinder.findFlyForDeparture("Warszawa");
+       /* List<String> resultDeparture =  flyFinder.findFlyForDeparture("Warszawa");
         for (String i: resultDeparture             ) {
             System.out.println("available departure: " + i);
         }
@@ -23,10 +23,10 @@ public class AirlinesApplication {
             }
         } else {
             System.out.println("Connection is not available, sorry.");
-        }
+        }*/
 
-        List<String> resultDepartureH =  flyFinder.findFlyForDepartureHASH("Warszawa");
-        for (String i: resultDeparture             ) {
+        List<String> resultDepartureH =  flyFinder.findFlyForDepartureHASH("krakow");
+        for (String i: resultDepartureH             ) {
             System.out.println("available departure HASH: " + i);
         }
 

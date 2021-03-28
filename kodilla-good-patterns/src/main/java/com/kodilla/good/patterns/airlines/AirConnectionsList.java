@@ -11,16 +11,16 @@ public class AirConnectionsList {
     Map<AirConnection, List<String>>connectionListHash = new HashMap<>();
 
     Map<String , List<String>> connectionList = new HashMap<>();
-    List<String> wrszawaList = new ArrayList<>();
+    List<String> warszawaList = new ArrayList<>();
     List<String> krakowList = new ArrayList<>();
     List<String> wroclawList = new ArrayList<>();
     List<String> gdansList = new ArrayList<>();
 
     public AirConnectionsList() {
-        wrszawaList.add("GDANSK");
-        wrszawaList.add("OLSZTYN");
-        wrszawaList.add("KRAKOW");
-        wrszawaList.add("WROCLAW");
+        warszawaList.add("GDANSK");
+        warszawaList.add("OLSZTYN");
+        warszawaList.add("KRAKOW");
+        warszawaList.add("WROCLAW");
 
         krakowList.add("RADOM");
         krakowList.add("WROCLAW");
@@ -37,12 +37,13 @@ public class AirConnectionsList {
         gdansList.add("ZAKOPANE");
         gdansList.add("WROCLAW");
 
-        connectionList.put("WARSZAWA", wrszawaList);
+        connectionList.put("WARSZAWA", warszawaList);
         connectionList.put("KRAKOW", krakowList);
         connectionList.put("WROCLAW", wroclawList);
         connectionList.put("GDANSK", gdansList);
 
-        connectionListHash.put(new AirConnection("Warszawa"), wrszawaList);
+        connectionListHash.put(new AirConnection("Warszawa"), warszawaList);
+        connectionListHash.put(new AirConnection("krakow"), krakowList);
 
     }
 
