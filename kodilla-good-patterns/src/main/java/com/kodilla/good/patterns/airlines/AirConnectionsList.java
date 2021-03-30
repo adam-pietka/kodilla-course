@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AirConnectionsList {
-//    List<AirConnection> connectionList = new ArrayList<>();
-//    Map<String,AirConnection> connectionList = new HashMap<>();
-    Map<AirConnection, List<String>>connectionListHash = new HashMap<>();
+    Map<AirPort, List<String>>connectionListHash = new HashMap<>();
 
     Map<String , List<String>> connectionList = new HashMap<>();
     List<String> warszawaList = new ArrayList<>();
@@ -42,8 +40,8 @@ public class AirConnectionsList {
         connectionList.put("WROCLAW", wroclawList);
         connectionList.put("GDANSK", gdansList);
 
-        connectionListHash.put(new AirConnection("Warszawa"), warszawaList);
-        connectionListHash.put(new AirConnection("krakow"), krakowList);
+        connectionListHash.put(new AirPort("Warszawa"), warszawaList);
+        connectionListHash.put(new AirPort("krakow"), krakowList);
 
     }
 
@@ -51,7 +49,7 @@ public class AirConnectionsList {
         return connectionList;
     }
 
-    public Map<AirConnection, List<String>> getConnectionListHash() {
+    public Map<AirPort, List<String>> getConnectionListHash() {
         return connectionListHash;
     }
 }

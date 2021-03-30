@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FlyFinder {
+public class FlyFinder{
 
     private final AirConnectionsList airConnectionsList = new AirConnectionsList() ;
+    private final PrintResultForFlyFinder printResultForFlyFinder = new PrintResultForFlyFinder();
 
     public List<String> findFlyCinnectionFromTo(String fromCity, String toCity){
-        List<String> listFrom = findFlyForDeparture(fromCity) ;
+        List<String> listFrom = findFlyForDepartureHASH(fromCity) ;
         List<String> listTo = findFlyForArrivals(toCity);
         List<String> resultList = new ArrayList<>();
         for ( String f : listFrom ) {
@@ -19,6 +20,7 @@ public class FlyFinder {
                 }
             }
         }
+        printResultForFlyFinder.printThroughAirport(fromCity, toCity, resultList);
         return resultList;
     }
 
@@ -27,12 +29,13 @@ public class FlyFinder {
         airConnectionsList.getConnectionList().entrySet().stream()
                 .forEach(e-> {
                     if (e.getValue().contains(arrivalCity.toUpperCase()))
-                        flyToFrom.add(e.getKey());
+                        flyToFrom.add(e.getKey().toUpperCase());
                 });
+        printResultForFlyFinder.printForArrival(arrivalCity, flyToFrom);
         return flyToFrom;
     }
 
-    public List<String> findFlyForDeparture(String departureCity){
+    public List<String> findFlyForDepartureHASH(String departureCity){
         List<String> flyFromTo = new ArrayList<>();
         airConnectionsList.getConnectionList().entrySet().stream()
                 .filter(i -> i.getKey().startsWith(departureCity.toUpperCase()))
@@ -41,19 +44,7 @@ public class FlyFinder {
                         .forEach(p-> {
                             flyFromTo.add(p.toUpperCase());
                         }));
+        printResultForFlyFinder.printForDeparture(departureCity, flyFromTo);
         return flyFromTo;
     }
-
-    public List<String> findFlyForDepartureHASH(String departureCity){
-        List<String> flyFromToHASH = new ArrayList<>();
-        airConnectionsList.getConnectionListHash().entrySet().stream()
-                .filter(i -> i.getKey().getAirport().startsWith(departureCity.toUpperCase()))
-                .collect(Collectors.toList())
-                .forEach(e-> e.getValue().stream()
-                        .forEach(p-> {
-                            flyFromToHASH.add(p.toUpperCase());
-                        }));
-        return flyFromToHASH;
-    }
-
 }

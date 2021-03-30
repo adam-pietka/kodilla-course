@@ -1,9 +1,9 @@
 package com.kodilla.good.patterns.airlines;
 
-public class AirConnection {
+public class AirPort {
     private String airport ;
 
-    public AirConnection(String airport) {
+    public AirPort(String airport) {
         this.airport = airport.toUpperCase();
     }
 
@@ -14,9 +14,9 @@ public class AirConnection {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AirConnection)) return false;
+        if (!(o instanceof AirPort)) return false;
 
-        AirConnection that = (AirConnection) o;
+        AirPort that = (AirPort) o;
 
         return airport.equals(that.airport);
     }
