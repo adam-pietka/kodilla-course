@@ -12,6 +12,7 @@ public class AppFood2Door {
                 new SmsEmailNotyfication(),
 //                new ProviderExtraFoodShop(),
                 new OrderTestONE().getShop(0),
+                // lista  z suplayerami
                 new DataStoreOrderRepositoryFood2Door());
 
         orderMainServicesFoodToDoor.process(foodOrderRequest);

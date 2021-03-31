@@ -8,19 +8,21 @@ public class OrderMainServicesFoodToDoor {
     private final NotificationServiceFood2Door notificationServiceFood2Door;
     private final OrderService orderService;
     private final OrderRepositoryFood2Door orderRepositoryFood2Door;
-    private List<ProductInBasket> tempListEF = new ArrayList<>();
-    private List<ProductInBasket> tempListHF = new ArrayList<>();
-    private List<ProductInBasket> tempListGF = new ArrayList<>();
+
 
     public OrderMainServicesFoodToDoor(NotificationServiceFood2Door notificationServiceFood2Door,
                                        OrderService orderService,
                                        OrderRepositoryFood2Door orderRepositoryFood2Door) {
         this.notificationServiceFood2Door = notificationServiceFood2Door;
-        this.orderService = orderService;
+        this.orderService = orderService; // arrayList
         this.orderRepositoryFood2Door = orderRepositoryFood2Door;
     }
 
     public void process(final FoodOrderRequest foodOrderRequest){
+        List<ProductInBasket> tempListEF = new ArrayList<>();
+        List<ProductInBasket> tempListHF = new ArrayList<>();
+        List<ProductInBasket> tempListGF = new ArrayList<>();
+
 //        divideIntoSuppliers();
         OrderService orderServiceExtraFood = new ProviderExtraFoodShop();
         OrderService orderServiceHealthyFood = new ProviderHealthyShop();
