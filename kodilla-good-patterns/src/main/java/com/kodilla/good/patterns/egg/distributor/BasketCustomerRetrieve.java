@@ -12,6 +12,6 @@ public class BasketCustomerRetrieve {
         customerBasketAdam.addProductToBasket(new ProductInBasket("TOMATO",15.0));
         customerBasketAdam.addProductToBasket(new ProductInBasket("CUCUMBER",15.3));
 
-        return new FoodOrderRequest(orderingPersonAdam.getUserId(),customerBasketAdam);
+        return new FoodOrderRequest(orderingPersonAdam,customerBasketAdam);
     }
 }

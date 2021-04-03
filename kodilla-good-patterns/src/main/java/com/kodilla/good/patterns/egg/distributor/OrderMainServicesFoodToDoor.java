@@ -16,29 +16,11 @@ public class OrderMainServicesFoodToDoor {
         this.orderRepositoryFood2Door = orderRepositoryFood2Door;
     }
 
-    public void startProcessingOrder(final FoodOrderRequest foodOrderRequest){
-        String[][] allInOrder = new  String[100][];
-        List<ProductInBasket> productInBaskets = foodOrderRequest.getOrderCustomerBasket().getCustomerBusket();
-        for (int i = 0; i <productInBaskets.size() ; i++) {
-            int finalI = i;
-            productInBaskets.stream()
-                    .forEach(p->{
-                        allInOrder[finalI][0] = p.getProductName();
-                        allInOrder[finalI][1] = p.getProductName();
-                    });
-        }
-
-
-
-
-    }
-
     public void splitTheOrder(final FoodOrderRequest foodOrderRequest){
         String[][] listProductsInOrder = new  String[100][];
-        List<ProductInBasket> productInBaskets = foodOrderRequest.getOrderCustomerBasket().getCustomerBusket();
-        for (int a = 0; a <productInBaskets.size() ; a++) {
+        for (int a = 0; a <foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().size() ; a++) {
             int finalA = a;
-            productInBaskets.stream()
+            foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().stream()
                     .forEach(p->{
                         listProductsInOrder[finalA][0] = p.getProductName().toUpperCase();
                         listProductsInOrder[finalA][1] = Double.toString(p.getProductQuantity());
@@ -46,58 +28,59 @@ public class OrderMainServicesFoodToDoor {
         }
 
         for (OrderService shopOnList: listsOfAvailableShop) {
-            String[][] listTEST= shopOnList.listOfAvailableProducts();
+            String[][] listOfAvailableProductsInShop = shopOnList.listOfAvailableProducts();
             for (int j=0; j< listProductsInOrder.length;j++){
-                String tmpProductFromOrder = listProductsInOrder[j][0];
-                Double tmpQuantityOfOrderedProduct = Double.parseDouble(listProductsInOrder[j][1]) ;
+                String tmpProductNameFromOrder = listProductsInOrder[j][0];
+                Double tmpProductQuantityFromOrdered = Double.parseDouble(listProductsInOrder[j][1]) ;
                 String[][]  orderPerShop = new  String[100][];
                 int tmpCounter = 0;
-                for (int i = 0; i < listTEST.length; i++) {
-                    String tmpAvailableProdInShop = listTEST[i][0];
-                    if (listProductsInOrder[j][2] != "" || listProductsInOrder[j][2] != null) {
-                        if (tmpProductFromOrder.equals(tmpAvailableProdInShop)) {
-                            if (Double.parseDouble(listTEST[i][1]) != 0) {
-                                if (tmpQuantityOfOrderedProduct < Double.parseDouble(listTEST[i][1])) {
-                                    listProductsInOrder[j][2] = listTEST.getClass().getName();
-                                    orderPerShop[tmpCounter][0] = tmpProductFromOrder;
-                                    orderPerShop[tmpCounter][1] = Double.toString(tmpQuantityOfOrderedProduct);
+                for (int i = 0; i < listOfAvailableProductsInShop.length; i++) {
+                    String tmpAvailableProdInShopName = listOfAvailableProductsInShop[i][0];
+                    if (listProductsInOrder[j][2] == "" || listProductsInOrder[j][2] == null) {
+                        if (tmpAvailableProdInShopName.equals(tmpProductNameFromOrder)) {
+                            if (Double.parseDouble(listOfAvailableProductsInShop[i][1]) != 0) {
+                                if (tmpProductQuantityFromOrdered < Double.parseDouble(listOfAvailableProductsInShop[i][1])) {
+                                    listProductsInOrder[j][2] = listOfAvailableProductsInShop.getClass().getName();
+                                    orderPerShop[tmpCounter][0] = tmpProductNameFromOrder;
+                                    orderPerShop[tmpCounter][1] = Double.toString(tmpProductQuantityFromOrdered);
 
                                     tmpCounter++;
+
+
                                 }
                             }
                         }
                     }
                 }
-
-
-
-                /*                int finalJ = j;
-                foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().stream()
-                .forEach(e->{
-                    for (int i =0; i< listTEST.length;i++){
-                        if (e.getProductName().toUpperCase().equals(listTEST[i][0])){
-                            if (Double.parseDouble(listTEST[i][1]) !=0){
-                                if ( (double) e.getProductQuantity() < Double.parseDouble(listTEST[i][1])){
-                                    orderPerShop[i][0] = e.getProductName().toUpperCase();
-                                    orderPerShop[i][1] = Double.toString( e.getProductQuantity());
-                                    listProductsInOrder[finalJ][3] = e.getClass().getName();
-                                }
-                            }
-                        }
-                    }
-                });*/
                 String[][] responseList =  shopOnList.process(orderPerShop);
-                completeTheOrder(responseList, listProductsInOrder);
+                completeTheOrder(responseList, listProductsInOrder, listsOfAvailableShop.size(), foodOrderRequest);
             }
         }
     }
 
-    public void completeTheOrder(String responseList[][], String allProductForOrder[][]){
+    public void completeTheOrder(String responseList[][], String allProductForOrder[][], int countShops, FoodOrderRequest foodOrderRequest){
+        int counteR=0;
         System.out.println("Let's start!!! ");
-        if (responseList.length == allProductForOrder.length){}
 
-        for (int i=0; i<responseList.length;i++){
-        String  x=    responseList[i][0];
+        String[][] allResponsesList = new String[10000][];
+        int no = 0 ;
+        for (int i = 0; i < responseList.length; i++) {
+            allResponsesList[no][0] = responseList[i][0];
+            allResponsesList[no][0] = responseList[i][1];
+            allResponsesList[no][2] = responseList[i][2];
+            allResponsesList[no][3] = responseList[i][3];
+            allResponsesList[no][4] = responseList[i][4];
+            counteR++;
         }
+
+        if(counteR == countShops){
+            NotificationServiceFood2Door notificationServiceFood2Door = new SmsEmailNotyfication();
+            notificationServiceFood2Door.sendInformationToUser(foodOrderRequest.getOrderingCustomer());
+            orderRepositoryFood2Door.orderToStore(foodOrderRequest.getOrderingCustomer(), foodOrderRequest, allProductForOrder);
+
+        }
+        /* NotificationService notificationMail = new SendSmsEmailNotyfication();
+            notificationMail.sendInformationToUser(orderRequest.getUser());
+            orderRepository.orderToStore(orderRequest.getUser(), orderRequest);*/
     }
 }
