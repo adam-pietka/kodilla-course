@@ -1,23 +1,32 @@
 package com.kodilla.good.patterns.egg.distributor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProviderExtraFoodShop implements  OrderService{
-    @Override
-    public ArrayList<ResponseProductInBasket> process(List<ProductInBasket> tempListEF) {
 
-        for (ProductInBasket i: tempListEF) {
-            System.out.println(i.getProductName() + " " + i.getProductQuantity());
-        }
+
+    @Override
+    public String[][] process(String[][] tempListEF) {
+
         System.out.println("Odpowiedż z ExtreFoodShop!!!");
         return null;
+
     }
 
-    public List<String> listOfAvailableProducts(){
-        List<String> listOfAvailableProducts = new ArrayList<>();
-        listOfAvailableProducts.add("EGGS");
+    public String[][] listOfAvailableProducts(){
+        String [][] productOnStockExtraFoodShop = new String[100][];
+        productOnStockExtraFoodShop[0][0] = "EGG";
+        productOnStockExtraFoodShop[0][1] = "1000";
+        productOnStockExtraFoodShop[1][0] = "MILK";
+        productOnStockExtraFoodShop[1][1] = "10";
+        productOnStockExtraFoodShop[2][0] = "CHEESE";
+        productOnStockExtraFoodShop[2][1] = "100";
+        productOnStockExtraFoodShop[3][0] = "BUTTER";
+        productOnStockExtraFoodShop[3][1] = "1";
+        productOnStockExtraFoodShop[4][0] = "PASTA";
+        productOnStockExtraFoodShop[4][1] = "20";
+        productOnStockExtraFoodShop[5][0] = "RICE";
+        productOnStockExtraFoodShop[5][1] = "10";
 
-        return listOfAvailableProducts;
+
+        return productOnStockExtraFoodShop;
     }
 }

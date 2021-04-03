@@ -1,66 +1,67 @@
 package com.kodilla.good.patterns.egg.distributor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OrderMainServicesFoodToDoor {
 
     private final NotificationServiceFood2Door notificationServiceFood2Door;
-    private final OrderService orderService;
     private final OrderRepositoryFood2Door orderRepositoryFood2Door;
+    private List<OrderService> listsOfAvailableShop;
 
 
     public OrderMainServicesFoodToDoor(NotificationServiceFood2Door notificationServiceFood2Door,
-                                       OrderService orderService,
+                                       List<OrderService> listsOfAvailableShop,
                                        OrderRepositoryFood2Door orderRepositoryFood2Door) {
         this.notificationServiceFood2Door = notificationServiceFood2Door;
-        this.orderService = orderService; // arrayList
+        this.listsOfAvailableShop = listsOfAvailableShop;
         this.orderRepositoryFood2Door = orderRepositoryFood2Door;
     }
 
-    public void process(final FoodOrderRequest foodOrderRequest){
-        List<ProductInBasket> tempListEF = new ArrayList<>();
-        List<ProductInBasket> tempListHF = new ArrayList<>();
-        List<ProductInBasket> tempListGF = new ArrayList<>();
+    public void splitTheOrder(final FoodOrderRequest foodOrderRequest){
+        String[][] allProductForOrder = new  String[100][];
 
-//        divideIntoSuppliers();
-        OrderService orderServiceExtraFood = new ProviderExtraFoodShop();
-        OrderService orderServiceHealthyFood = new ProviderHealthyShop();
-        OrderService orderServiceGlutenFreeFood = new ProviderGlutenFreeShop();
+        for (OrderService shopOnList: listsOfAvailableShop) {
+            String[][] listTEST= shopOnList.listOfAvailableProducts();
 
-        for ( ProductInBasket i: foodOrderRequest.getOrderCustomerBasket().getCustomerBusket()) {
-            if (orderServiceExtraFood.listOfAvailableProducts().contains(i.getProductName())) {
-                tempListEF.add(new ProductInBasket(i.getProductName(),i.getProductQuantity()));
+            for (int j=0; j< foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().size();j++){
+                String[][]  orderPerShop = new  String[100][];
+                int finalJ = j;
+                foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().stream()
+                .forEach(e->{
+                    for (int i =0; i< listTEST.length;i++){
+                        if (e.getProductName().toUpperCase().equals(listTEST[i][0])){
+                            if (Double.parseDouble(listTEST[i][1]) !=0){
+                                if ( (double) e.getProductQuantity() < Double.parseDouble(listTEST[i][1])){
+                                    orderPerShop[i][0] = e.getProductName().toUpperCase();
+                                    orderPerShop[i][1] = Double.toString( e.getProductQuantity());
+                                    allProductForOrder[finalJ][0] = e.getClass().getName();
+                                    allProductForOrder[finalJ][1] = e.getProductName().toUpperCase();
+                                    allProductForOrder[finalJ][2] = Double.toString( e.getProductQuantity());
+                                } else {
+                                    allProductForOrder[finalJ][0] = e.getClass().getName();
+                                    allProductForOrder[finalJ][1] = e.getProductName().toUpperCase();
+                                    allProductForOrder[finalJ][2] = "0.00" ;
+                                }
+                                //
+                            }
+                        }
+                    }
+                });
+                String[][] responseList =  new String[100][];
+                responseList = shopOnList.process(orderPerShop);
+                completeTheOrder(responseList);
+
             }
-            if (orderServiceHealthyFood.listOfAvailableProducts().contains(i.getProductName())) {
-                tempListHF.add(new ProductInBasket(i.getProductName(),i.getProductQuantity()));
-            }
-            if (orderServiceGlutenFreeFood.listOfAvailableProducts().contains(i.getProductName())) {
-                tempListGF.add(new ProductInBasket(i.getProductName(),i.getProductQuantity()));
-            }
+        }
+    }
+
+    public void completeTheOrder(String lista[][]){
+        System.out.println("Let's start!!! ");
+
+
+        for (int i=0; i<lista.length;i++){
+        String  x=    lista[i][0];
         }
 
-        ArrayList<ResponseProductInBasket> responseProductInBaskets  = new ArrayList<>();
-        ArrayList<ResponseProductInBasket> responseProductInBaskets1 ;
-        ArrayList<ResponseProductInBasket> responseProductInBaskets2 ;
-        ArrayList<ResponseProductInBasket> responseProductInBaskets3 ;
-
-        responseProductInBaskets1 = orderServiceExtraFood.process(tempListEF);
-        responseProductInBaskets2 = orderServiceExtraFood.process(tempListHF);
-        responseProductInBaskets3 = orderServiceExtraFood.process(tempListGF);
-
-        for (ResponseProductInBasket answer :responseProductInBaskets1) {
-            responseProductInBaskets.add(answer);
-        }
-        for (ResponseProductInBasket answer :responseProductInBaskets2) {
-            responseProductInBaskets.add(answer);
-        }
-        for (ResponseProductInBasket answer :responseProductInBaskets3) {
-            responseProductInBaskets.add(answer);
-        }
-
-        for (ResponseProductInBasket print: responseProductInBaskets  ) {
-            System.out.println(print);
-        }
     }
 }

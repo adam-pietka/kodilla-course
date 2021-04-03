@@ -5,7 +5,7 @@ public class FoodOrderRequest {
     private OrderingPerson orderingPerson;
     private CustomerBasket customerBasket;
 
-    public FoodOrderRequest(OrderingPerson orderingPerson, CustomerBasket customerBasket) {
+    public FoodOrderRequest(String orderingPerson, CustomerBasket customerBasket) {
         this.orderingPerson = orderingPerson;
         this.customerBasket = customerBasket;
     }
