@@ -4,9 +4,16 @@ public class ProviderHealthyShop implements OrderService{
 
     @Override
     public String[][] process(String[][] lista) {
-        String[][] listaResponse = new String[100][];
 
-        return null;
+        String[][] listaResponse = new String[100][];
+        listaResponse[0][0] = "MILK";
+        listaResponse[0][1] = "10";
+        listaResponse[0][2] = "100.0";
+        listaResponse[1][0] = "HAM";
+        listaResponse[1][1] = "10";
+        listaResponse[1][2] = "10.5";
+
+        return listaResponse ;
     }
 
     @Override

@@ -24,6 +24,8 @@ public class AppFood2Door {
                 , shopList   // lista  z suplayerami
                 , new DataStoreOrderRepositoryFood2Door());
 
+        orderMainServicesFoodToDoor.startProcessingOrder(foodOrderRequest);
+
 //        orderMainServicesFoodToDoor.process(String[][] listaSAAA);
     }
 

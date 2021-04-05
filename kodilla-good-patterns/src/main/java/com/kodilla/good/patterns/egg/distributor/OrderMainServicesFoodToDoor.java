@@ -16,7 +16,7 @@ public class OrderMainServicesFoodToDoor {
         this.orderRepositoryFood2Door = orderRepositoryFood2Door;
     }
 
-    public void splitTheOrder(final FoodOrderRequest foodOrderRequest){
+    public void startProcessingOrder(final FoodOrderRequest foodOrderRequest){
         String[][] listProductsInOrder = new  String[100][];
         for (int a = 0; a <foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().size() ; a++) {
             int finalA = a;
@@ -46,7 +46,6 @@ public class OrderMainServicesFoodToDoor {
 
                                     tmpCounter++;
 
-
                                 }
                             }
                         }
@@ -63,13 +62,13 @@ public class OrderMainServicesFoodToDoor {
         System.out.println("Let's start!!! ");
 
         String[][] allResponsesList = new String[10000][];
-        int no = 0 ;
+        int n = 0 ;
         for (int i = 0; i < responseList.length; i++) {
-            allResponsesList[no][0] = responseList[i][0];
-            allResponsesList[no][0] = responseList[i][1];
-            allResponsesList[no][2] = responseList[i][2];
-            allResponsesList[no][3] = responseList[i][3];
-            allResponsesList[no][4] = responseList[i][4];
+            allResponsesList[n][0] = responseList[i][0];
+            allResponsesList[n][0] = responseList[i][1];
+            allResponsesList[n][2] = responseList[i][2];
+            allResponsesList[n][3] = responseList[i][3];
+            allResponsesList[n][4] = responseList[i][4];
             counteR++;
         }
 

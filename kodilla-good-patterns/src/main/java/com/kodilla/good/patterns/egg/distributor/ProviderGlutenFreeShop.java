@@ -4,7 +4,15 @@ public class ProviderGlutenFreeShop implements OrderService {
 
     @Override
     public String[][] process(String[][] lista) {
-        return null;
+        String[][] takaTam = new String[100][];
+        takaTam[0][0] = "MILK";
+        takaTam[0][1] = "10";
+        takaTam[0][2] = "100.0";
+        takaTam[1][0] = "HAM";
+        takaTam[1][1] = "10";
+        takaTam[1][2] = "10.5";
+
+        return takaTam ;
     }
 
     @Override
