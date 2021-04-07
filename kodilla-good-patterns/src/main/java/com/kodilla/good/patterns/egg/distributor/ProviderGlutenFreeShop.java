@@ -1,3 +1,4 @@
+/*
 package com.kodilla.good.patterns.egg.distributor;
 
 public class ProviderGlutenFreeShop implements OrderService {
@@ -33,4 +34,4 @@ public class ProviderGlutenFreeShop implements OrderService {
 
         return productOnStockGluTenFree;
     }
-}
+}*/

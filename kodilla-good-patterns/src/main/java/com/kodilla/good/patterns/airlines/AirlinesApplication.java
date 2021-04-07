@@ -5,8 +5,6 @@ import java.util.List;
 public class AirlinesApplication {
     public static void main(String[] args) {
         FlyFinder flyFinder = new FlyFinder();
-
-
 //
 
         List<String> arrivalList =  flyFinder.findFlyForArrivalsHASH("Radom");

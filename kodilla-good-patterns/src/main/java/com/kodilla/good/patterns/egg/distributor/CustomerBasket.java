@@ -5,11 +5,11 @@ import java.util.List;
 
 public class CustomerBasket {
 
-    private String orderingPerson;
+    private String orderingPersonID;
     private List<ProductInBasket> customerBusket =  new ArrayList<>();
 
-    public CustomerBasket(String orderingPerson) {
-        this.orderingPerson = orderingPerson;
+    public CustomerBasket(String orderingPersonID) {
+        this.orderingPersonID = orderingPersonID;
     }
 
     public void addProductToBasket(ProductInBasket productInBasket){
@@ -17,7 +17,7 @@ public class CustomerBasket {
     }
 
     public String getOrderingPerson() {
-        return orderingPerson;
+        return orderingPersonID;
     }
 
     public List<ProductInBasket> getCustomerBusket() {

@@ -13,11 +13,11 @@ public class AppFood2Door {
         List<OrderService> shopList = new ArrayList<>();
 
         ProviderExtraFoodShop  providerExtraFoodShop = new ProviderExtraFoodShop();
-        ProviderHealthyShop providerHealthyShop = new ProviderHealthyShop();
-        ProviderGlutenFreeShop providerGlutenFreeShop = new ProviderGlutenFreeShop();
+//        ProviderHealthyShop providerHealthyShop = new ProviderHealthyShop();
+//        ProviderGlutenFreeShop providerGlutenFreeShop = new ProviderGlutenFreeShop();
         shopList.add(providerExtraFoodShop);
-        shopList.add(providerHealthyShop);
-        shopList.add(providerGlutenFreeShop);
+//        shopList.add(providerHealthyShop);
+//        shopList.add(providerGlutenFreeShop);
 
         OrderMainServicesFoodToDoor orderMainServicesFoodToDoor = new OrderMainServicesFoodToDoor(
                 new SmsEmailNotyfication()

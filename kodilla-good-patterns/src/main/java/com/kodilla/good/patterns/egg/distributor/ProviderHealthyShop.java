@@ -1,3 +1,4 @@
+/*
 package com.kodilla.good.patterns.egg.distributor;
 
 public class ProviderHealthyShop implements OrderService{
@@ -41,3 +42,4 @@ public class ProviderHealthyShop implements OrderService{
     }
 
 }
+*/

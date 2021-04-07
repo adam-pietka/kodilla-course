@@ -1,7 +1,9 @@
 package com.kodilla.good.patterns.egg.distributor;
 
+import java.util.List;
+
 public interface OrderService {
-    String[][] process(String[][] lista);
-    String[][] listOfAvailableProducts();
+    List<ProductInBasket> process(String userId, List<ProductInBasket> customerBusket);
+//    String[][] listOfAvailableProducts();
 
 }

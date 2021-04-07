@@ -8,9 +8,9 @@ public class BasketCustomerRetrieve {
         CustomerBasket customerBasketAdam = new CustomerBasket(orderingPersonAdam.getUserId());
         customerBasketAdam.addProductToBasket(new ProductInBasket("EGGS",12.0));
         customerBasketAdam.addProductToBasket(new ProductInBasket("MILK",3.0));
-//        customerBasketAdam.addProductToBasket(new ProductInBasket("HAM",5.0));
-//        customerBasketAdam.addProductToBasket(new ProductInBasket("TOMATO",15.0));
-//        customerBasketAdam.addProductToBasket(new ProductInBasket("CUCUMBER",15.3));
+        customerBasketAdam.addProductToBasket(new ProductInBasket("HAM",5.0));
+        customerBasketAdam.addProductToBasket(new ProductInBasket("TOMATO",15.0));
+        customerBasketAdam.addProductToBasket(new ProductInBasket("CUCUMBER",15.3));
 
         return new FoodOrderRequest(orderingPersonAdam,customerBasketAdam);
     }
