@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.egg.distributor;
 
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class OrderMainServicesFoodToDoor {
@@ -17,21 +17,50 @@ public class OrderMainServicesFoodToDoor {
         this.orderRepositoryFood2Door = orderRepositoryFood2Door;
     }
 
-    public void startProcessingOrder(final FoodOrderRequest foodOrderRequest){
-        List<ProductInBasket> opppop = foodOrderRequest.getOrderCustomerBasket().getCustomerBusket();
+    public OrderDtoFoodToDoor startProcessingOrder(FoodOrderRequest foodOrderRequest){
+        HashMap<String, Double> shortListOrderedProducts = new HashMap<>();
+        boolean isSale = false;
 
         for (OrderService shop: listsOfAvailableShop) {
-            opppop = shop.process(
-                    foodOrderRequest.getOrderingCustomer().getUserId()
-                    , foodOrderRequest.getOrderCustomerBasket().getCustomerBusket());
+            foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().stream()
+                    .forEach(i->{
+                        double ordered = i.getQuantityOrderedByCustomer();
+                        double sold = i.getQuantitySold();
+                        shortListOrderedProducts.put(i.getProductName(), ordered - sold);
+                    });
+
+            HashMap<Boolean , DtoProduct > answerFromShop = shop.process(foodOrderRequest.getOrderingCustomer().getUserId(), shortListOrderedProducts);
+
+            if (answerFromShop.get(true) != null ) {
+                answerFromShop.entrySet().stream()
+                .forEach(eachAnswerFromShop -> {
+                    foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().stream()
+                    .forEach(eachBasket ->{
+                        if( eachBasket.getProductName().equals(eachAnswerFromShop.getValue().getProdName())) {
+                            eachBasket.setQuantitySold(eachAnswerFromShop.getValue().getQuantity());
+                            eachBasket.setTotalPrice(eachAnswerFromShop.getValue().getAmount());
+                            eachBasket.setPrice(eachBasket.getTotalPrice() / eachBasket.getQuantitySold());
+                        }
+                    });
+                } );
+                isSale = true;
+            }
+            shortListOrderedProducts.clear();
         }
 
-        int o=0;
-        for (List<ProductInBasket> e : Arrays.asList(opppop)) {
-            e.stream().forEach(a -> System.out.println("**" + a.toString()));
-            o += e.stream().mapToInt(a -> (int) a.getQuantitySold()).sum();
-
+        System.out.println("Print Customr Basket:");
+        for (ProductInBasket i: foodOrderRequest.getOrderCustomerBasket().getCustomerBusket()
+        ) {
+            System.out.println(i.toString() );
         }
-        System.out.println("O: " + o);
+
+        if (isSale){
+            NotificationServiceFood2Door notificationServiceFood2Door = new SmsEmailNotyfication();
+            notificationServiceFood2Door.sendInformationToUser(foodOrderRequest.getOrderingCustomer());
+            orderRepositoryFood2Door.orderToStore(foodOrderRequest);
+            return new OrderDtoFoodToDoor(foodOrderRequest.getOrderingCustomer(), true);
+        } else {
+            return new OrderDtoFoodToDoor(foodOrderRequest.getOrderingCustomer(), false);
+        }
     }
 }

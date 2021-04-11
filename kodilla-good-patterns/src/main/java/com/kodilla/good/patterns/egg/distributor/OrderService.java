@@ -1,9 +1,9 @@
 package com.kodilla.good.patterns.egg.distributor;
 
-import java.util.List;
+import java.util.HashMap;
 
 public interface OrderService {
-    List<ProductInBasket> process(String userId, List<ProductInBasket> customerBusket);
+    HashMap<Boolean, DtoProduct> process(String userId, HashMap<String, Double> orderedProducts);
 //    String[][] listOfAvailableProducts();
 
 }

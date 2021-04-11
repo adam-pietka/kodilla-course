@@ -23,4 +23,10 @@ public class CustomerBasket {
     public List<ProductInBasket> getCustomerBusket() {
         return customerBusket;
     }
+    public void printCustomerBuysket(){
+        System.out.println(orderingPersonID.toString());
+        for (ProductInBasket i: customerBusket             ) {
+            System.out.println(i.toString());
+        }
+    }
 }

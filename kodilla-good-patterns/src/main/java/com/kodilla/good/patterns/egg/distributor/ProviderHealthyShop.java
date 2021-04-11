@@ -1,45 +1,55 @@
 /*
 package com.kodilla.good.patterns.egg.distributor;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class ProviderHealthyShop implements OrderService{
 
-    @Override
-    public String[][] process(String[][] lista) {
-
-        String[][] listaResponse = new String[100][];
-        listaResponse[0][0] = "MILK";
-        listaResponse[0][1] = "10";
-        listaResponse[0][2] = "100.0";
-        listaResponse[1][0] = "HAM";
-        listaResponse[1][1] = "10";
-        listaResponse[1][2] = "10.5";
-
-        return listaResponse ;
-    }
 
     @Override
-    public String[][] listOfAvailableProducts() {
+    public List<ProductInBasket> process(String userId, List<ProductInBasket> productListFromOrder) {
+        List<ProductInBasket> replayListHealthyShop = productListFromOrder;
+        replayListHealthyShop.stream()
+                .forEach(e-> {
+                    DtoProduct tmp = checkStock(e.getProductName(), e.getQuantityOrderedByCustomer());
 
-        String [][] productOnStockHealthyShop = new String[100][];
-        productOnStockHealthyShop[0][0] = "HAM";
-         productOnStockHealthyShop[0][1] = "100";
-        productOnStockHealthyShop[1][0] = "SUGAR";
-         productOnStockHealthyShop[1][1] = "10";
-        productOnStockHealthyShop[2][0] = "HOMEY";
-         productOnStockHealthyShop[2][1] = "10";
-        productOnStockHealthyShop[3][0] = "BACON";
-         productOnStockHealthyShop[3][1] = "10";
-        productOnStockHealthyShop[4][0] = "PORK";
-         productOnStockHealthyShop[4][1] = "10";
-        productOnStockHealthyShop[5][0] = "BEEF";
-         productOnStockHealthyShop[5][1] = "10";
-        productOnStockHealthyShop[6][0] = "LAMB";
-         productOnStockHealthyShop[6][1] = "10";
-        productOnStockHealthyShop[7][0] = "CRAYFISH";
-         productOnStockHealthyShop[7][1] = "10";
-
-        return productOnStockHealthyShop;
+                    e.setQuantitySold(tmp.getQuantity());
+                    e.setPrice(tmp.getPrice());
+                    e.setTotalPrice(tmp.getAmount());
+                });
+        return replayListHealthyShop;
     }
 
+    private DtoProduct checkStock(String prodName, double quantity){
+        HashMap<String,ProviderExtraFoodShopWarehouse> extraHealthyShop = new HashMap<>();
+        extraHealthyShop.put("CHICKEN", new ProviderExtraFoodShopWarehouse("CHICKEN", 12.50,55.0 ));
+        extraHealthyShop.put("TANGERINE", new ProviderExtraFoodShopWarehouse("tangerine", 8.0,0.40 ));
+        extraHealthyShop.put("INEDIBLE", new ProviderExtraFoodShopWarehouse("inedible", 100.0,2.5 ));
+        extraHealthyShop.put("VINEGAR", new ProviderExtraFoodShopWarehouse("vinegar", 10.0,25.0 ));
+        extraHealthyShop.put("LETTUCE", new ProviderExtraFoodShopWarehouse("lettuce", 1.0,65.00 ));
+        extraHealthyShop.put("CUCUMBER", new ProviderExtraFoodShopWarehouse("CUCUMBER", 2.0,5.00 ));
+
+        if (extraHealthyShop.get(prodName) != null) {
+            if (quantity <= extraHealthyShop.get(prodName).getQuantityOnStock() & extraHealthyShop.get(prodName).getQuantityOnStock() != 0) {
+                extraHealthyShop.get(prodName).setQuantityOnStock(extraHealthyShop.get(prodName).getQuantityOnStock() - quantity);
+                return new DtoProduct(
+                        prodName,
+                        quantity,
+                        extraHealthyShop.get(prodName).getPrice(),
+                        extraHealthyShop.get(prodName).getPrice() * quantity);
+            }
+            if (quantity > extraHealthyShop.get(prodName).getQuantityOnStock() & extraHealthyShop.get(prodName).getQuantityOnStock() != 0) {
+                double tmp = extraHealthyShop.get(prodName).getQuantityOnStock();
+
+                return new DtoProduct(
+                        prodName,
+                        tmp,
+                        extraHealthyShop.get(prodName).getPrice(),
+                        extraHealthyShop.get(prodName).getPrice() * tmp);
+            }
+        }
+        return new DtoProduct(prodName,0,0,0);
+    }
 }
 */

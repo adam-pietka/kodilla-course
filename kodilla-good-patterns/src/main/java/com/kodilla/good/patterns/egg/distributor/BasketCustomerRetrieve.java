@@ -10,7 +10,7 @@ public class BasketCustomerRetrieve {
         customerBasketAdam.addProductToBasket(new ProductInBasket("MILK",3.0));
         customerBasketAdam.addProductToBasket(new ProductInBasket("HAM",5.0));
         customerBasketAdam.addProductToBasket(new ProductInBasket("TOMATO",15.0));
-        customerBasketAdam.addProductToBasket(new ProductInBasket("CUCUMBER",15.3));
+        customerBasketAdam.addProductToBasket(new ProductInBasket("CUCUMBER",15.0));
 
         return new FoodOrderRequest(orderingPersonAdam,customerBasketAdam);
     }

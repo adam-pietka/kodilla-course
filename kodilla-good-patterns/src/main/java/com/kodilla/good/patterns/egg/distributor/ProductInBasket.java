@@ -1,5 +1,6 @@
 package com.kodilla.good.patterns.egg.distributor;
 
+
 public class ProductInBasket {
 
     private String productName;
@@ -17,6 +18,7 @@ public class ProductInBasket {
         this.productName = productName.toUpperCase();
         this.quantityOrderedByCustomer = quantityOrderedByCustomer;
         this.quantitySold = quantitySold;
+        this.price = Math.round(price);
         this.price = price;
         this.totalPrice = totalPrice;
     }
@@ -34,7 +36,7 @@ public class ProductInBasket {
     }
 
     public void setQuantitySold(double quantitySold) {
-        this.quantitySold = quantitySold;
+        this.quantitySold = this.quantitySold +  quantitySold;
     }
 
     public double getPrice() {
@@ -50,18 +52,17 @@ public class ProductInBasket {
     }
 
     public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+        this.totalPrice = this.totalPrice + totalPrice;
     }
 
     @Override
     public String toString() {
-        return "ProductInBasket{" +
+        return "ProductInBasket: " +
                 "productName='" + productName + '\'' +
                 ", quantityOrderedByCustomer=" + quantityOrderedByCustomer +
                 ", quantitySold=" + quantitySold +
                 ", price=" + price +
                 ", totalPrice=" + totalPrice +
-                '}';
+                " ||";
     }
 }
-
