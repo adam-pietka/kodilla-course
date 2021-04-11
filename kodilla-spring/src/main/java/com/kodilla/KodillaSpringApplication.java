@@ -9,7 +9,7 @@ public class KodillaSpringApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(KodillaSpringApplication.class, args);
-        System.out.println("Prring let's start!!!");
+        System.out.println("\n############## Pring let's start!!! ##############\n");
     }
 
 
