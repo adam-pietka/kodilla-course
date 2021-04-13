@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 class CalculatorTestSuite {
 
@@ -13,24 +15,33 @@ class CalculatorTestSuite {
     @Test
     void testAdd(){
         //Given
-        calculator.add(200.8, 2.1234);
+        double result =  calculator.add(200.0, 2.1234);
         //When
-        //Then
+        assertEquals(202.1234, result);
+//Then
     }
 
     @Test
     void testSub(){
-
-        calculator.sub(5.0, 2.2);
+        //given & when
+        double result =  calculator.sub(5.0, 2.2);
+        //then
+        assertEquals(2.8, result);
     }
 
     @Test
     void testMul(){
-        calculator.mul(4.5, 5.0);
+        //given & when
+        double result =  calculator.mul(4.5, 5.0);
+        //then
+        assertEquals(22.5,result);
     }
 
     @Test
     void testDiv(){
-        calculator.div(200.0, 5.5);
+        //given & when
+        double result =  calculator.div(209.0, 5.5);
+        //then
+        assertEquals(38.0, result);
     }
 }
