@@ -1,27 +1,25 @@
 package com.kodilla.spring.portfolio;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TaskList {
+    Board board;
 
+    private final ArrayList<String> tasks;
 
-    private List<TaskList> toDoList;
-
-    public TaskList(String notesContent) {
-        ArrayList<String> tasks = new ArrayList<>();
-        tasks.add(notesContent);
+    public TaskList() {
+        tasks = new ArrayList<>();
     }
-    public void saveToDoTask(){
-        System.out.println("I sava task to list toDoList.");
+    public void addTask(String task){
+        tasks.add(task);
     }
 
-
-/*    public List<String> getTasks() {
+    public ArrayList<String> getTasks() {
         return tasks;
-    }*/
-/*
-    public String readTask() {
-        return "Task: " + tasks ;
-    }*/
+    }
+
 }
+/*Utwórz również klasę TaskList w tym samym pakiecie – powinna ona zawierać właściwość
+        List<String> tasks.
+ Jej zawartość powinna być inicjowana w konstruktorze przy pomocy polecenia
+        tasks = new ArrayList<>();*/

@@ -9,9 +9,11 @@ public class BoardTestSuite {
 
     @Test
     void testReadTask(){
-        TaskList taskList = new TaskList("Testing reading task.");
-        System.out.println(taskList.readTask());
-
+        TaskList taskList = new TaskList();
+        taskList.addTask("test");
+        Board board = new Board();
+        board.addToDoList(taskList);
+        System.out.println(board.getToDoList());
     }
 
     @Test
