@@ -11,7 +11,8 @@ public class LoggerTestSuite {
 
     @BeforeAll
     public static void writeSomethingToLogger(){
-        logger = new Logger();
+//        logger = new Logger();
+        logger = Logger.LOGGER;
         logger.log("Lorem ipsum");
     }
 
