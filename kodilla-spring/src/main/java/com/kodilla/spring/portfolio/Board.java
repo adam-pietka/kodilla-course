@@ -1,19 +1,20 @@
 package com.kodilla.spring.portfolio;
 
-public class Board {
-    private TaskList toDoList;
-    private TaskList inProgressList;
-    private TaskList doneList;
 
-    public void setToDoList(TaskList toDoList) {
-        this.toDoList = toDoList;
+public final class Board {
+//    private TaskList taskList;
+//    List<TaskList> toDoList = new ArrayList<>();
+//    private TaskList toDoList;
+
+    final TaskList taskList;
+
+    public Board(final TaskList taskList){
+        this.taskList = taskList;
     }
 
-    public void setInProgressList(TaskList inProgressList) {
-        this.inProgressList = inProgressList;
+    public void toDoList(){
+        taskList.saveToDoTask();
     }
 
-    public void setDoneList(TaskList doneList) {
-        this.doneList = doneList;
-    }
+
 }

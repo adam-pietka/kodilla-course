@@ -8,6 +8,7 @@ public class OrderMainServicesFoodToDoor {
     private final NotificationServiceFood2Door notificationServiceFood2Door;
     private final OrderRepositoryFood2Door orderRepositoryFood2Door;
     private List<OrderService> listsOfAvailableShop;
+    boolean  isSale = false;
 
     public OrderMainServicesFoodToDoor(NotificationServiceFood2Door notificationServiceFood2Door,
                                        List<OrderService> listsOfAvailableShop,
@@ -19,40 +20,42 @@ public class OrderMainServicesFoodToDoor {
 
     public OrderDtoFoodToDoor startProcessingOrder(FoodOrderRequest foodOrderRequest){
         HashMap<String, Double> shortListOrderedProducts = new HashMap<>();
-        boolean isSale = false;
+
 
         for (OrderService shop: listsOfAvailableShop) {
+
             foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().stream()
                     .forEach(i->{
-                        double ordered = i.getQuantityOrderedByCustomer();
-                        double sold = i.getQuantitySold();
-                        shortListOrderedProducts.put(i.getProductName(), ordered - sold);
+                        String productName = i.getProductName();
+                        double quantityOrdered = i.getQuantityOrderedByCustomer();
+                        double quantitySold = i.getQuantitySold();
+                        shortListOrderedProducts.put(productName, quantityOrdered - quantitySold);
                     });
 
-            HashMap<Boolean , DtoProduct > answerFromShop = shop.process(foodOrderRequest.getOrderingCustomer().getUserId(), shortListOrderedProducts);
-
-            if (answerFromShop.get(true) != null ) {
-                answerFromShop.entrySet().stream()
-                .forEach(eachAnswerFromShop -> {
-                    foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().stream()
-                    .forEach(eachBasket ->{
-                        if( eachBasket.getProductName().equals(eachAnswerFromShop.getValue().getProdName())) {
-                            eachBasket.setQuantitySold(eachAnswerFromShop.getValue().getQuantity());
-                            eachBasket.setTotalPrice(eachAnswerFromShop.getValue().getAmount());
-                            eachBasket.setPrice(eachBasket.getTotalPrice() / eachBasket.getQuantitySold());
-                        }
-                    });
-                } );
-                isSale = true;
-            }
-            shortListOrderedProducts.clear();
+            HashMap<String , DtoProduct > answerFromShop = shop.process(foodOrderRequest.getOrderingCustomer().getUserId(), shortListOrderedProducts);
+                            answerFromShop.entrySet().stream()
+                                    .forEach(eachAnswerFromShop -> {
+                                        foodOrderRequest.getOrderCustomerBasket().getCustomerBusket().stream()
+                                                .forEach(eachBasket ->{
+                                                    if( eachBasket.getProductName().equals(eachAnswerFromShop.getValue().getProdName())) {
+                                                        eachBasket.setQuantitySold(eachAnswerFromShop.getValue().getQuantity());
+                                                        eachBasket.setTotalPrice(eachAnswerFromShop.getValue().getAmount());
+                                                        if(eachBasket.getQuantitySold() == 0) eachBasket.setPrice(0);
+                                                        if(eachBasket.getQuantitySold() > 0) {
+                                                            eachBasket.setPrice(eachBasket.getTotalPrice() / eachBasket.getQuantitySold());
+                                                            isSale = true;
+                                                        }
+                                                    }
+                                                });
+                                    } );
+                            shortListOrderedProducts.clear();
         }
-
-        System.out.println("Print Customr Basket:");
-        for (ProductInBasket i: foodOrderRequest.getOrderCustomerBasket().getCustomerBusket()
-        ) {
-            System.out.println(i.toString() );
-        }
+        
+// TESTOWE  // TESTOWE// TESTOWE// TESTOWE// TESTOWE// TESTOWE// TESTOWE// TESTOWE// TESTOWE// TESTOWE// TESTOWE// TESTOWE
+        System.out.println("Print customer Basket:");
+        for (ProductInBasket i: foodOrderRequest.getOrderCustomerBasket().getCustomerBusket())
+            {System.out.println(i.toString() );}
+// *************************************************************************************************************************
 
         if (isSale){
             NotificationServiceFood2Door notificationServiceFood2Door = new SmsEmailNotyfication();

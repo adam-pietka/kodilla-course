@@ -6,10 +6,10 @@ public class BasketCustomerRetrieve {
         OrderingPerson orderingPersonAdam = new OrderingPerson("Adam P.","Develope 11 st.", 888_555_55,"adam.java@main.com");
 
         CustomerBasket customerBasketAdam = new CustomerBasket(orderingPersonAdam.getUserId());
-        customerBasketAdam.addProductToBasket(new ProductInBasket("EGGS",12.0));
-        customerBasketAdam.addProductToBasket(new ProductInBasket("MILK",3.0));
-        customerBasketAdam.addProductToBasket(new ProductInBasket("HAM",5.0));
-        customerBasketAdam.addProductToBasket(new ProductInBasket("TOMATO",15.0));
+        customerBasketAdam.addProductToBasket(new ProductInBasket("EGGS",120.0));
+        customerBasketAdam.addProductToBasket(new ProductInBasket("MILK",30.0));
+        customerBasketAdam.addProductToBasket(new ProductInBasket("HAM",15.0));
+        customerBasketAdam.addProductToBasket(new ProductInBasket("TOMATO",55.5));
         customerBasketAdam.addProductToBasket(new ProductInBasket("CUCUMBER",15.0));
 
         return new FoodOrderRequest(orderingPersonAdam,customerBasketAdam);

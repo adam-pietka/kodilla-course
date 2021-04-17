@@ -14,10 +14,10 @@ public class AppFood2Door {
 
         ProviderExtraFoodShop  providerExtraFoodShop = new ProviderExtraFoodShop();
 //        ProviderHealthyShop providerHealthyShop = new ProviderHealthyShop();
-//        ProviderGlutenFreeShop providerGlutenFreeShop = new ProviderGlutenFreeShop();
+        ProviderGlutenFreeShop providerGlutenFreeShop = new ProviderGlutenFreeShop();
         shopList.add(providerExtraFoodShop);
 //        shopList.add(providerHealthyShop);
-//        shopList.add(providerGlutenFreeShop);
+        shopList.add(providerGlutenFreeShop);
 
         OrderMainServicesFoodToDoor orderMainServicesFoodToDoor = new OrderMainServicesFoodToDoor(
                 new SmsEmailNotyfication()

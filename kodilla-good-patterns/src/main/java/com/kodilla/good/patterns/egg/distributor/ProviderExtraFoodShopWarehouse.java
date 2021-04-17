@@ -16,16 +16,12 @@ public class ProviderExtraFoodShopWarehouse {
         return prodName;
     }
 
-    public void setProdName(String prodName) {
-        this.prodName = prodName;
-    }
-
     public double getQuantityOnStock() {
         return quantityOnStock;
     }
 
-    public void setQuantityOnStock(double quantityOnStock) {
-        this.quantityOnStock = quantityOnStock;
+    public void setQuantityOnStock(double chargeQuantity) {
+        this.quantityOnStock = getQuantityOnStock() - chargeQuantity;
     }
 
     public double getPrice() {

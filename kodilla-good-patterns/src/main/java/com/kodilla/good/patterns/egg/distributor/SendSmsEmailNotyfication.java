@@ -19,6 +19,6 @@ class SmsEmailNotyfication implements NotificationServiceFood2Door {
     }
 
     private void sendLetter(String userAdress){
-        System.out.println("Maybe is old fashion, but we were send mail to you:\n" + userAdress + "\n");
+        System.out.println("Maybe is old fashion, but we were send letter to you:\n\t" + userAdress + "\n");
     }
 }

@@ -7,5 +7,8 @@ public class BoardConfig {
     @Autowired
     TaskList task;
 
+//    @Bean
+//    public Board
+
 
 }
