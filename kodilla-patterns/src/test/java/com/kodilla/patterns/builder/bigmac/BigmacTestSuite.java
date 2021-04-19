@@ -15,6 +15,7 @@ public class BigmacTestSuite {
                 .ingredient("bacon")
                 .ingredient("jalapenion")
                 .sauceType("mexic")
+                .sauceType("garlic")
                 .buildBigMAc();
         System.out.println(bigMacADam);
         //W

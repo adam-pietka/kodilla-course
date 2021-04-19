@@ -6,13 +6,14 @@ import java.util.List;
 public class BigMac {
     private final String bun;
     private final int burgers;
-    private final String sauce;
+//    private final String sauce;
+    private List<String> sauces = new ArrayList<>();
     private List<String> ingredients = new ArrayList<>();
 
     public static class BigMacBuilder {
         public String bun;
         public int burgers;
-        public String sauce;
+        public List<String> sauces = new ArrayList<>();
         public List<String> ingredients = new ArrayList<>();
 
         public BigMacBuilder bunType(String bun){
@@ -26,8 +27,8 @@ public class BigMac {
         }
 
         public BigMacBuilder sauceType(String sauce){
-            this.sauce = sauce;
-            return  this;
+            sauces.add(sauce);
+            return this;
         }
 
         public BigMacBuilder ingredient(String ingredient){
@@ -35,14 +36,15 @@ public class BigMac {
             return this;
         }
         public BigMac buildBigMAc(){
-            return new BigMac(bun, burgers, sauce, ingredients);
+            return new BigMac(bun, burgers, sauces, ingredients);
         }
 
     }
-    private BigMac(final String bun,final int burgers,final String sauce, List<String> ingredients) {
+    private BigMac(final String bun,final int burgers,final List<String> sauces, List<String> ingredients) {
         this.bun = bun;
         this.burgers = burgers;
-        this.sauce = sauce;
+        this.sauces = new ArrayList<>(sauces);
+//        this.sauce = sauce;
         this.ingredients = new ArrayList<>(ingredients);
     }
 //*********************************************************************************1
@@ -54,25 +56,19 @@ public class BigMac {
         return burgers;
     }
 
-    public String getSauce() {
-        return sauce;
+    public List<String> getSauce() {
+        return sauces;
     }
 
     public List<String> getIngredients() {
         return ingredients;
     }
 
-    @Override
     public String toString() {
-        String ingr = "";
-        for (int i = 0 ; i< ingredients.size() ; i++){
-            ingr = ingr + "\t* " +  ingredients.get(i) + "\n";
-        }
-
-        return "BigMac{" +
+        return "BigMac {" +
                 "bun='" + bun + '\'' +
                 ", burgers=" + burgers +
-                ", sauce='" + sauce + '\'' +
-                ", ingredients: " +  "\n" + ingr;
+                ", sauce='" + sauces + '\'' +
+                ", ingredients: " +  ingredients + "}.";
     }
 }
