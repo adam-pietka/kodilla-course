@@ -8,7 +8,7 @@ public class ProviderGlutenFreeStockStatus {
 //
     public ProviderGlutenFreeStockStatus() {
 //    public void loadDataToHashMap(){
-        glutenFreeShopWarehouseHashMap.put("CUCUMBER", new ProviderExtraFoodShopWarehouse("CUCUMBER", 1000.0,3.0 ));
+        glutenFreeShopWarehouseHashMap.put("CUCUMBER", new ProviderExtraFoodShopWarehouse("CUCUMBER", 110.0,3.0 ));
         glutenFreeShopWarehouseHashMap.put("EGGS", new ProviderExtraFoodShopWarehouse("EGGS", 10.0,0.40 ));
         glutenFreeShopWarehouseHashMap.put("APPLE", new ProviderExtraFoodShopWarehouse("apple", 100.0,2.5 ));
         glutenFreeShopWarehouseHashMap.put("RASPBERRY", new ProviderExtraFoodShopWarehouse("raspberry", 10.0,25.0 ));

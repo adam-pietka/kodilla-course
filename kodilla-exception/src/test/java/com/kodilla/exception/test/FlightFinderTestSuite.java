@@ -19,4 +19,5 @@ public class FlightFinderTestSuite {
         assertThrows(RouteNotFoundException.class, () -> flightFinderrr.findFilght(flightOutOfRange) );
         assertThrows(RouteNotFoundException.class, () -> flightFinderrr.findFilght(flightOutOfRange2) );
     }
+    // boolean dla  lotów pośrednich true,  więcej niż 2 przesiadki
 }

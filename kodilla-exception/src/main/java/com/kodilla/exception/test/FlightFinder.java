@@ -2,15 +2,12 @@ package com.kodilla.exception.test;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import  com.kodilla.exception.test.RouteNotFoundException;
-
-import javax.xml.transform.sax.SAXSource;
 
 public class FlightFinder {
 
-    public boolean   findFilght(Flight flight) throws  RouteNotFoundException{
+    public boolean findFilght(Flight flight) throws  RouteNotFoundException{
+
         Map<String, Boolean> flightMap = new HashMap<>();
         flightMap.put("WARSAW", true);
         flightMap.put("CRACOW", false);
@@ -51,7 +48,6 @@ public class FlightFinder {
         } finally {
             System.out.println("End function: " + LocalDateTime.now());
         }
-
         System.out.println("******* Finally end. ************");
     }
 }
