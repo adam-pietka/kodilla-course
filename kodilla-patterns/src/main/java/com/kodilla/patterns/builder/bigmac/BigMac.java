@@ -6,7 +6,6 @@ import java.util.List;
 public class BigMac {
     private final String bun;
     private final int burgers;
-//    private final String sauce;
     private List<String> sauces = new ArrayList<>();
     private List<String> ingredients = new ArrayList<>();
 
@@ -36,6 +35,11 @@ public class BigMac {
             return this;
         }
         public BigMac buildBigMAc(){
+            if (bun == null || burgers == 0){
+                System.out.println("BUN and at least one burger are required.");
+                throw new  IllegalStateException("BUN and at least one burger are required.");
+            }
+
             return new BigMac(bun, burgers, sauces, ingredients);
         }
 
@@ -44,7 +48,6 @@ public class BigMac {
         this.bun = bun;
         this.burgers = burgers;
         this.sauces = new ArrayList<>(sauces);
-//        this.sauce = sauce;
         this.ingredients = new ArrayList<>(ingredients);
     }
 //*********************************************************************************1

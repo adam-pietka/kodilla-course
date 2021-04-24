@@ -9,7 +9,7 @@ public class BigmacTestSuite {
 
         //G
         BigMac bigMacADam = new BigMac.BigMacBuilder()
-                .bunType("with Sezam")
+//                .bunType("with Sezam")
                 .burgersQuantity(2)
                 .ingredient("Onion")
                 .ingredient("bacon")
