@@ -15,6 +15,11 @@ public class BigMac {
         public List<String> sauces = new ArrayList<>();
         public List<String> ingredients = new ArrayList<>();
 
+        public BigMacBuilder(String bun, int burgers) {
+            this.bun = bun;
+            this.burgers = burgers;
+        }
+
         public BigMacBuilder bunType(String bun){
             this.bun = bun;
             return this;
