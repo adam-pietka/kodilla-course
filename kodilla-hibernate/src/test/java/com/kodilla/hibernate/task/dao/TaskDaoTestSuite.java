@@ -17,10 +17,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class TaskDaoTestSuite {
     @Autowired
-    private TaskDao taskDao;
     private TaskListDao taskListDao;
-    private static final String  DESCRIPTION = "Test: Learn Hibernate";
+    @Autowired
+    private TaskDao taskDao;
+
     //LISTNAME
+    private static final String  DESCRIPTION = "Test: Learn Hibernate";
     private static final String  LISTNAME = "inProgress";
     private static final String  TODO = "ToDo";
 
@@ -94,7 +96,6 @@ public class TaskDaoTestSuite {
         task2.setTaskList(taskList);
 
         //When
-//        taskListDao.save(taskList);
         taskListDao.save(taskList);
         int id = taskList.getId();
 
@@ -104,6 +105,4 @@ public class TaskDaoTestSuite {
         //CleanUp
         //taskListDao.deleteById(id);
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.kodilla.hibernate.invoice.dao;
 
+import com.kodilla.hibernate.invoice.Invoice;
 import com.kodilla.hibernate.invoice.Item;
 import com.kodilla.hibernate.invoice.Product;
 import org.junit.jupiter.api.Test;
@@ -15,8 +16,10 @@ public class InvoiceDaoTestSuite {
 
     @Autowired
     private  ProductDao productDao;
+    @Autowired
     private ItemDao itemDao;
-//    private InvoiceDao invoiceDao;
+    @Autowired
+    private InvoiceDao invoiceDao;
 
     @Test
     void testSavePoduct(){
@@ -60,22 +63,35 @@ public class InvoiceDaoTestSuite {
 
     }
 
-    /*@Test
+    @Test
     void testInvoiceDaoSave(){
         //G
         Product productOne = new Product("Desk");
-        Product productTwo = new Product("Lamp");
-        Product productThree = new Product("Pen");
+//        Product productTwo = new Product("Lamp");
 
         Item itemFirst = new Item( new BigDecimal(50),3, new BigDecimal(44));
-        itemFirst.getProduct().add(productOne);
-        itemFirst.getProduct().add(productTwo);
-        itemFirst.getProduct().add(productThree);
+        Item itemSecond = new Item( new BigDecimal(11),2, new BigDecimal(22));
 
+        itemFirst.setProduct(productOne);
+        productOne.getItem().add(itemFirst);
+
+        itemSecond.setProduct(productOne);
+        productOne.getItem().add(itemSecond);
+
+        Invoice invoiceTest = new Invoice("INV: 2021/858");
+        itemFirst.setInvoice(invoiceTest);
+        itemSecond.setInvoice(invoiceTest);
+
+        invoiceTest.getItems().add(itemFirst);
+        invoiceTest.getItems().add(itemSecond);
+
+//        productDao.save(productOne);
+        invoiceDao.save(invoiceTest);
         //W
 
         //T
-    }*/
+
+    }
 
 }
 
