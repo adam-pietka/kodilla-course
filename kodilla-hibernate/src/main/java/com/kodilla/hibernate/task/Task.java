@@ -1,5 +1,4 @@
 package com.kodilla.hibernate.task;
-
 import com.kodilla.hibernate.tasklist.TaskList;
 
 import javax.persistence.*;
@@ -9,6 +8,7 @@ import java.util.Date;
 @Entity
 @Table(name = "TASKS")
 public final class Task {
+
     private int id;
     private String description;
     private Date created;
@@ -27,6 +27,7 @@ public final class Task {
 
     @Id
     @GeneratedValue
+    @NotNull
     @Column(name = "ID", unique = true)
     public int getId() {
         return id;
@@ -75,7 +76,7 @@ public final class Task {
     }
 
     @ManyToOne
-    @JoinColumn(name = "TASKLIST_ID")
+    @JoinColumn(name = "TLIST_ID", referencedColumnName = "TASKLIST_ID")
     public TaskList getTaskList() {
         return taskList;
     }

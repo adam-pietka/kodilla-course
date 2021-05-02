@@ -22,6 +22,7 @@ public class TaskDaoTestSuite {
     private static final String  DESCRIPTION = "Test: Learn Hibernate";
     //LISTNAME
     private static final String  LISTNAME = "inProgress";
+    private static final String  TODO = "ToDo";
 
     @Test
     void testTaskDaoSave(){
@@ -93,6 +94,7 @@ public class TaskDaoTestSuite {
         task2.setTaskList(taskList);
 
         //When
+//        taskListDao.save(taskList);
         taskListDao.save(taskList);
         int id = taskList.getId();
 
@@ -102,4 +104,6 @@ public class TaskDaoTestSuite {
         //CleanUp
         //taskListDao.deleteById(id);
     }
+
+
 }
