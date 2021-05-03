@@ -1,0 +1,11 @@
+{
+	"carModel": "Gulia GTA"
+	"carBrand": "Mazda",
+	"carSeats":[
+		{"material": "leather", "color": "brown"},
+		{"material": "leather", "color": "black"},
+		{"material": "leather", "color": "red"},
+		{"material": "alcantara", "color": "black-grey"}
+		],
+	"engineCapacity": 2199
+}
