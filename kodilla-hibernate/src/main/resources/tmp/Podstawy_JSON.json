@@ -1,5 +1,5 @@
 {
-	"carModel": "Gulia GTA"
+	"carModel": "Gulia GTA",
 	"carBrand": "Mazda",
 	"carSeats":[
 		{"material": "leather", "color": "brown"},
