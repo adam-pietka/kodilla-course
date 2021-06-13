@@ -86,7 +86,7 @@ public class InvoiceDaoTestSuite {
         invoiceTest.getItems().add(itemSecond);
 
 //        productDao.save(productOne);
-        invoiceDao.save(invoiceTest);
+//        invoiceDao.save(invoiceTest);
         //W
 
         //T

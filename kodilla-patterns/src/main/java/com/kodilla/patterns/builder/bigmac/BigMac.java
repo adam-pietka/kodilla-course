@@ -49,6 +49,7 @@ public class BigMac {
         }
 
     }
+
     private BigMac(final String bun,final int burgers,final List<String> sauces, List<String> ingredients) {
         this.bun = bun;
         this.burgers = burgers;
