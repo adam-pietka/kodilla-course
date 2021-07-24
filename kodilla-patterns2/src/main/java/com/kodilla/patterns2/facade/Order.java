@@ -12,14 +12,12 @@ public class Order {
     private boolean isPaid;
     private boolean isVerified;
     private boolean isSubmitted ;
-    private boolean isSubmmitted;
 
     public Order(Long orderId, Long userId, ProductService productService) {
         this.orderId = orderId;
         this.userId = userId;
         this.productService = productService;
     }
-
 
     public BigDecimal calculateValue() {
         BigDecimal sum = BigDecimal.ZERO;
@@ -44,7 +42,7 @@ public class Order {
 
     public void setVerified(boolean verified) { isVerified = verified; }
 
-    public boolean isSubmitted() { return isSubmmitted; }
+    public boolean isSubmitted() { return isSubmitted; }
 
     public void setSubmitted(boolean submitted) { isSubmitted = submitted; }
 
