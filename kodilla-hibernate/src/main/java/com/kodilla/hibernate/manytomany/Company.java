@@ -1,9 +1,18 @@
 package com.kodilla.hibernate.manytomany;
 
+import org.springframework.stereotype.Service;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+
+@NamedQueries({
+        @NamedQuery(
+                name = "Company.retrieveCompanyByFragmentName",
+                query = "FROM Company WHERE :FIELD  like :FRAGMENTNAME"
+        )
+})
 
 @NamedNativeQuery(
         name = "Company.retrieveCompanyByName",
@@ -13,6 +22,7 @@ import java.util.List;
 )
 @Entity
 @Table(name = "COMPANIES")
+@Service
 public class Company {
 
     private int id;
